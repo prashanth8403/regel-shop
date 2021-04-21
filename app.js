@@ -4,20 +4,20 @@ const path = require('path');
 
 const app = express();
 
-const adminRoute = require('./routes/admin');
+app.set('view engine','pug');
+app.set('views','views');
+
+const adminData = require('./routes/admin');
 const shopRoute = require('./routes/shop');
-// req: request.
-// res: response
-// next: name of next middleware
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin',adminRoute);
+app.use('/admin', adminData.routes);
 app.use(shopRoute);
 
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 app.listen(5000);

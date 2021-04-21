@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{docTitle}
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/product.css")
+
+    body
+        header.main-header
+            nav.main-header__nav 
+                ul.main-header__item-list 
+                    li.main-header__item
+                        a.active(href="/") Shop
+                    li.main-header__item
+                        a(href="/admin/add-product") Product
+        
+        main 
+            .grid 
+                each product in prods
+                    article.card.product-item
+                        header.card__header 
+                            h1.product__title #{product.title} 
+                        div.card__image
+                            img(src="", alt="")
+                        .card__content 
+                            h2.photo__price $19.99
+                            p.product_description A very interesting book about so many even more 
+                        .card_actions
+                            button.btn Add to Cart
